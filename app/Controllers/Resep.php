@@ -60,23 +60,23 @@ class Resep extends ResourceController
      */
     public function create()
     {
+
+        $fileName = "";
+        $foto = $this->request->getFile('foto');
+
+        if ($foto->getSizeByUnit() > 0) {
+            $fileName = $foto->getRandomName(); // Mendapatkan nama file baru secara acak 
+
+            $foto->move('images', $fileName); // Memindahkan file ke public/photos dengan nama acak
+        }
+
         $payload = [
             "namamenu" => $this->request->getPost('namamenu'),
             "caption" => $this->request->getPost('caption'),
             "bahan" => $this->request->getPost('bahan'),
             "cara" => $this->request->getPost('cara'),
-            "foto" => $this->request->getPost('foto'),
+            "foto" => 'images/'.$fileName,
         ];
-
-        $foto = $this->request->getFile('foto');
-        if ($foto->isValid() && !$foto->hasMoved()) {
-            $newName = $foto->getRandomName();
-            $foto->move(ROOTPATH . 'public/images', $newName);
-            $payload['foto'] = $newName;
-        } else {
-            // Handle error jika unggah foto gagal
-            return redirect()->back()->withInput()->with('error', 'Failed to upload photo.');
-        }
 
 
         $this->resepModel->insert($payload);
@@ -110,12 +110,22 @@ class Resep extends ResourceController
      */
     public function update($id = null)
     {
+        $menu = $this->resepModel->find($id);
+
+        $fileName = $menu['foto'];
+        $foto = $this->request->getFile('foto');
+
+        if ($foto->getSizeByUnit() > 0) {
+            $fileName = $foto->getRandomName(); // Mendapatkan nama file baru secara acak
+            $foto->move('images', $fileName); // Memindahkan file ke public/photos dengan nama acak
+        }
+
         $payload = [
             "namamenu" => $this->request->getPost('namamenu'),
             "caption" => $this->request->getPost('caption'),
             "bahan" => $this->request->getPost('bahan'),
             "cara" => $this->request->getPost('cara'),
-            "foto" => $this->request->getPost('foto'),
+            "foto" => 'images/'.$fileName,
         ];
 
         $this->resepModel->update($id, $payload);

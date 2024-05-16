@@ -54,6 +54,7 @@
   <section class="shop_section layout_padding">
     <div class="container">
       <div class="heading_container heading_center">
+      <h5 class="mb-4">Hello <?= session('username') ?> </h5>
         <h2>
           Our Recipes
         </h2>
@@ -69,7 +70,7 @@
                 </div>
                 <div class="detail-box">
                   <h6>
-                    <?php echo $item['namamenu']; ?>
+                    <a href="/resep/<?= $item['id']; ?>/viewresep"><?php echo $item['namamenu']; ?></a>
                   </h6>
                   <h6>
                     <div>
