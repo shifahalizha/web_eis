@@ -8,41 +8,7 @@
 <body>
   <div class="hero_area">
     <!-- header section strats -->
-    <header class="header_section">
-      <nav class="navbar navbar-expand-lg custom_nav-container ">
-        <a class="navbar-brand">
-          <span>
-            Hungry Partner
-          </span>
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class=""></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav  ">
-            <li class="nav-item active">
-              <a class="nav-link" href="">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/resep/viewresep">Recipes</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="">Contact Us</a>
-            </li>
-          </ul>
-          <div class="user_option">
-            <a href="">
-              <i class="fa fa-user" aria-hidden="true"></i>
-              <span>
-                Login
-              </span>
-            </a>
-          </div>
-        </div>
-      </nav>
-    </header>
+    <?= $this->include('layout/header') ?>
     <!-- end header section -->
 
   </div>
@@ -53,12 +19,6 @@
 
   <section class="shop_section layout_padding">
     <div class="container">
-      <div class="heading_container heading_center">
-      <h5 class="mb-4">Hello <?= session('username') ?> </h5>
-        <h2>
-          Our Recipes
-        </h2>
-      </div>
       <div class="row">
         <?php foreach ($menu as $item): ?>
           <div class="col-sm-6 col-md-4 col-lg-3">
@@ -66,15 +26,18 @@
               <a href="">
                 <?php $no = 0; ?>
                 <div class="img-box">
-                  <img src="<?php echo $item['foto']; ?>" alt="" style="width: 100%; height: auto; object-fit: cover;">
+                  <img src="/images/<?php echo $item['foto']; ?>" alt=""
+                    style="width: 100%; height: auto; object-fit: cover;">
                 </div>
                 <div class="detail-box">
                   <h6>
-                    <a href="/resep/<?= $item['id']; ?>/viewresep"><?php echo $item['namamenu']; ?></a>
+                    <form action="/resep/<?= $item['id']; ?>">
+                      <a href="/resep/<?= $item['id']; ?>/viewresep"><?php echo $item['namamenu']; ?></a>
+                    </form>
                   </h6>
                   <h6>
                     <div>
-                      <form action="/resep/<?= $item['id']; ?>" method="post" onsubmit="return confirm(`Are you sure?`)">
+                      <form action="/resep/<?= $item['id']; ?>" method="post" onsubmit="return confirm(Are you sure?)">
                         <input type="hidden" name="_method" value="DELETE" />
                         <button type="submit">Delete</button>
                         <a href="/resep/<?= $item['id']; ?>/edit">Edit</a>
@@ -108,37 +71,52 @@
               ABOUT US
             </h6>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doLorem ipsum dolor sit amet, consectetur
-              adipiscing elit, sed doLorem ipsum dolor sit amet,
+              Pembuatan website bertema resep bertujuan untuk menyelesaikan
+              tugas projek akhir di semester 4
             </p>
           </div>
           <div class="col-md-6 col-lg-3">
             <h6>
-              NEED HELP
-            </h6>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doLorem ipsum dolor sit amet, consectetur
-              adipiscing elit, sed doLorem ipsum dolor sit amet,
-            </p>
-          </div>
-          <div class="col-md-6 col-lg-3">
-            <h6>
-              CONTACT US
+              Member
             </h6>
             <div class="info_link-box">
-              <a href="">
-                <i class="fa fa-map-marker" aria-hidden="true"></i>
-                <span> Gb road 123 london Uk </span>
+              <a>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                  class="bi bi-person-circle" viewBox="0 0 16 16">
+                  <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                  <path fill-rule="evenodd"
+                    d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
+                </svg>
+                <i aria-hidden="true"></i>
+                <span> Shifa Halizha Sestiawan (2213020210) </span>
               </a>
-              <a href="">
-                <i class="fa fa-phone" aria-hidden="true"></i>
-                <span>+01 12345678901</span>
-              </a>
-              <a href="">
-                <i class="fa fa-envelope" aria-hidden="true"></i>
-                <span> demo@gmail.com</span>
+              <a>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                  class="bi bi-person-circle" viewBox="0 0 16 16">
+                  <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                  <path fill-rule="evenodd"
+                    d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
+                </svg>
+                <i aria-hidden="true"></i>
+                <span> Chantika Miranda Novrial (2213020198) </span>
               </a>
             </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <h6>
+              Jurusan
+            </h6>
+            <p>
+              CCIT FTUI Teknologi Informasi Ekonomi Syariah (4TIES1)
+            </p>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <h6>
+              MataKuliah
+            </h6>
+            <p>
+              Executive Information System
+            </p>
           </div>
         </div>
       </div>

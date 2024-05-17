@@ -12,7 +12,7 @@
             <h5 class="mb-4">Update menu <?= $data['namamenu'] ?></h5>
 
             <form action="/resep/<?= $data['id'] ?>" method="post" enctype="multipart/form-data">
-                <input type="hidden" name="_method" value="put" />
+                <input type="hidden" name="_method" value="PUT" />
 
                 <div class="form-group">
                     <label for="example-product-name">Nama menu</label>
@@ -29,13 +29,13 @@
                 <div class="form-group">
                     <label for="example-product-name">Bahan-bahan</label>
                     <input type="text" class="form-control" id="example-ingridiens" aria-describedby="emailHelp"
-                        placeholder="Enter bahan-bahan" required name="bahan" value="<?= $data['bahan'] ?>">
+                        placeholder="Enter bahan-bahan" required name="bahan" value="<?= $data['bahan'] ?>"></input>
                 </div>
 
                 <div class="form-group">
                     <label for="example-product-name">Langkah-langkah</label>
                     <input type="text" class="form-control" id="example-instruction" aria-describedby="emailHelp"
-                        placeholder="Enter cara-cara" required name="cara" value="<?= $data['cara'] ?>">
+                        placeholder="Enter cara-cara" required name="cara" value="<?= $data['cara'] ?>"></>
                 </div>
 
                 <div>

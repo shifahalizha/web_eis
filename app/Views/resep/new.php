@@ -21,11 +21,11 @@
                 <br />
                 <label for="price">Bahan-Bahan</label>
                 <br />
-                <input type="text" class="form-control" id="bahan" placeholder="Input Ingridients" name="bahan" /> <br />
-                
+                <input type="text" class="form-control" id="bahan" placeholder="Input Ingridients" name="bahan"></input> 
+                <br />
                 <label for="category">Langkah-Langkah</label>
                 <br />
-                <input type="text" class="form-control" id="cara" placeholder="Input intructions" name="cara" />
+                <input type="text" class="form-control" id="cara" placeholder="Input intructions" name="cara" ></input>
                 <br />
 
                 <label for="category">Foto</label>
@@ -43,5 +43,3 @@
         </div>
     </div>
 </div>
-
-</body>

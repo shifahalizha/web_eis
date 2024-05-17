@@ -13,3 +13,4 @@ $routes->group('', ['filter' => 'authMiddleware'], function($routes) {
 
 $routes->resource('register');
 $routes->resource('login');
+$routes->resource('logout');

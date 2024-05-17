@@ -10,7 +10,8 @@ class Resep extends ResourceController
 {
     private $resepModel;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->resepModel = new ResepModel();
     }
 
@@ -40,7 +41,16 @@ class Resep extends ResourceController
      */
     public function show($id = null)
     {
-        //
+        $menu = $this->resepModel->find($id);
+
+        // Periksa apakah produk ditemukan
+        if (!$menu) {
+            // Jika tidak ditemukan, lempar exception atau arahkan ke halaman 404
+            throw new \Exception("Data not found!");
+        }
+
+        // Tampilkan halaman detail produk dengan menggunakan view
+        echo view('resep/viewresep', ['data' => $menu]);
     }
 
     /**
@@ -75,7 +85,7 @@ class Resep extends ResourceController
             "caption" => $this->request->getPost('caption'),
             "bahan" => $this->request->getPost('bahan'),
             "cara" => $this->request->getPost('cara'),
-            "foto" => 'images/'.$fileName,
+            "foto" => $fileName,
         ];
 
 
@@ -93,11 +103,11 @@ class Resep extends ResourceController
     public function edit($id = null)
     {
         $menu = $this->resepModel->find($id);
-        
+
         if (!$menu) {
-            throw new \Exception("Data not found!");   
+            throw new \Exception("Data not found!");
         }
-        
+
         echo view('resep/edit', ["data" => $menu]);
     }
 
@@ -125,7 +135,7 @@ class Resep extends ResourceController
             "caption" => $this->request->getPost('caption'),
             "bahan" => $this->request->getPost('bahan'),
             "cara" => $this->request->getPost('cara'),
-            "foto" => 'images/'.$fileName,
+            "foto" => $fileName,
         ];
 
         $this->resepModel->update($id, $payload);
