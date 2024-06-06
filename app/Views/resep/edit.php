@@ -26,16 +26,16 @@
                         placeholder="Enter caption" required name="caption" value="<?= $data['caption'] ?>">
                 </div>
 
-                <div class="form-group">
+                <div>
                     <label for="example-product-name">Bahan-bahan</label>
-                    <input type="text" class="form-control" id="example-ingridiens" aria-describedby="emailHelp"
-                        placeholder="Enter bahan-bahan" required name="bahan" value="<?= $data['bahan'] ?>"></input>
+                    <textarea type="text" class="form-control" id="example-ingridiens" aria-describedby="emailHelp"
+                         required name="bahan" value="" rows="5" cols="33"><?php echo htmlspecialchars($data['bahan']); ?></textarea>
                 </div>
 
-                <div class="form-group">
+                <div>
                     <label for="example-product-name">Langkah-langkah</label>
-                    <input type="text" class="form-control" id="example-instruction" aria-describedby="emailHelp"
-                        placeholder="Enter cara-cara" required name="cara" value="<?= $data['cara'] ?>"></>
+                    <textarea type="text" class="form-control" id="example-instruction" aria-describedby="emailHelp"
+                     required name="cara" value="" rows="5" cols="33"><?php echo htmlspecialchars($data['cara']); ?></textarea>
                 </div>
 
                 <div>

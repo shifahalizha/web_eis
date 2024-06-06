@@ -13,6 +13,8 @@ class Resep extends ResourceController
     public function __construct()
     {
         $this->resepModel = new ResepModel();
+        $this->session = \Config\Services::session();
+
     }
 
 
@@ -80,12 +82,21 @@ class Resep extends ResourceController
             $foto->move('images', $fileName); // Memindahkan file ke public/photos dengan nama acak
         }
 
+        // Mengambil ID pengguna dari sesi
+        $userId = $this->session->get('id');
+        
+        // Memastikan pengguna sudah login
+        if (!$userId) {
+            return redirect()->to('/login')->with('error', 'Anda harus login terlebih dahulu');
+        }
+
         $payload = [
             "namamenu" => $this->request->getPost('namamenu'),
             "caption" => $this->request->getPost('caption'),
             "bahan" => $this->request->getPost('bahan'),
             "cara" => $this->request->getPost('cara'),
             "foto" => $fileName,
+            "user_id" => $userId // Simpan ID pengguna yang membuat resep
         ];
 
 
@@ -106,6 +117,10 @@ class Resep extends ResourceController
 
         if (!$menu) {
             throw new \Exception("Data not found!");
+        }
+
+        if ($menu['user_id'] !== $this->session->get('id')) {
+            return redirect()->to('/resep')->with('error', 'Anda tidak memiliki izin untuk mengedit resep ini');
         }
 
         echo view('resep/edit', ["data" => $menu]);
@@ -151,6 +166,12 @@ class Resep extends ResourceController
      */
     public function delete($id = null)
     {
+        $menu = $this->resepModel->find($id);
+
+        if ($menu['user_id'] !== $this->session->get('id')) {
+            return redirect()->to('/resep')->with('error', 'Anda tidak memiliki izin untuk menghapus resep ini');
+        }
+
         $this->resepModel->delete($id);
         return redirect()->to('/resep');
     }

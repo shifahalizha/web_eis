@@ -1,8 +1,11 @@
+
 <!DOCTYPE html>
 <html>
 
 <head>
     <?= $this->include('layout/head') ?>
+    <style>
+    </style>
 </head>
 
 
@@ -12,7 +15,8 @@
             <form action="/resep" method="post" enctype="multipart/form-data">
                 <label for="name">Nama Menu</label>
                 <br />
-                <input type="text"  class="form-control" id="namamenu" placeholder="Input product name" name="namamenu" />
+                <input type="text" class="form-control" id="namamenu" placeholder="Input product name"
+                    name="namamenu" />
 
                 <br />
                 <label for="stock">Berikan Caption</label>
@@ -21,11 +25,13 @@
                 <br />
                 <label for="price">Bahan-Bahan</label>
                 <br />
-                <input type="text" class="form-control" id="bahan" placeholder="Input Ingridients" name="bahan"></input> 
+                <textarea type="text" class="form-control" id="bahan" placeholder="Input Ingridients" name="bahan"
+                    rows="5" cols="33"></textarea>
                 <br />
                 <label for="category">Langkah-Langkah</label>
                 <br />
-                <input type="text" class="form-control" id="cara" placeholder="Input intructions" name="cara" ></input>
+                <textarea type="text" class="form-control" id="cara" placeholder="Input intructions" name="cara"
+                    rows="5" cols="33" wrap="hard"></textarea>
                 <br />
 
                 <label for="category">Foto</label>
@@ -43,3 +49,5 @@
         </div>
     </div>
 </div>
+
+</body>

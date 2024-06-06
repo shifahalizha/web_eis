@@ -149,6 +149,9 @@
                 </div>
 
                 <button type="submit" class="btn btn-primary">Login</button>
+                <br  />
+                <br  />
+                <a href="/register">Belum punya akun? Buat Sekarang </a>
             </form>
         </div>
     </div>

@@ -127,7 +127,7 @@
                 <div class="form-group">
                     <label for="example-email">Name</label>
                     <input type="text" class="form-control" id="example-email" aria-describedby="emailHelp"
-                        placeholder="Enter email" required name="name">
+                        placeholder="Enter email" required name="username">
                 </div>
 
                 <div class="form-group">
@@ -149,6 +149,9 @@
                 </div>
 
                 <button type="submit" class="btn btn-primary">Submit</button>
+                <br  />
+                <br  />
+                <a href="/login">Already have an account? Login now </a>
             </form>
         </div>
     </div>

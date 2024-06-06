@@ -14,11 +14,10 @@
   </div>
   <!-- end hero area -->
 
-  <!-- shop section -->
-
 
   <section class="shop_section layout_padding">
     <div class="container">
+      <h5 class="mb-4">Hello <?= session('username') ?> </h5>
       <div class="row">
         <?php foreach ($menu as $item): ?>
           <div class="col-sm-6 col-md-4 col-lg-3">
@@ -26,8 +25,8 @@
               <a href="">
                 <?php $no = 0; ?>
                 <div class="img-box">
-                  <img src="/images/<?php echo $item['foto']; ?>" alt=""
-                    style="width: 100%; height: auto; object-fit: cover;">
+                    <img src="/images/<?php echo $item['foto']; ?>" alt=""
+                      style="width: 100%; height: auto; object-fit: cover;">
                 </div>
                 <div class="detail-box">
                   <h6>
@@ -35,15 +34,20 @@
                       <a href="/resep/<?= $item['id']; ?>/viewresep"><?php echo $item['namamenu']; ?></a>
                     </form>
                   </h6>
-                  <h6>
-                    <div>
-                      <form action="/resep/<?= $item['id']; ?>" method="post" onsubmit="return confirm(Are you sure?)">
-                        <input type="hidden" name="_method" value="DELETE" />
-                        <button type="submit">Delete</button>
-                        <a href="/resep/<?= $item['id']; ?>/edit">Edit</a>
-                      </form>
-                    </div>
-                  </h6>
+                  <?php if (session('id') == $item['user_id']): ?>
+                    <h6>
+                      <div>
+                        <form action="/resep/<?= $item['id']; ?>" method="post"
+                          onsubmit="return confirm('Apakah Anda yakin?')">
+                          <input type="hidden" name="_method" value="DELETE" />
+                          <button type="submit" style="background: none; border: none; cursor: pointer;"><i
+                              class="fas fa-trash-alt" style="color: #e83e8c;"></i></button>
+                          <a href="/resep/<?= $item['id']; ?>/edit" style="text-decoration: none; color: inherit;"><i
+                              class="fas fa-edit" style="color: #e83e8c;"></i></a>
+                        </form>
+                      </div>
+                    </h6>
+                  <?php endif; ?>
                 </div>
               </a>
             </div>
@@ -55,10 +59,17 @@
           Add new Recipes
         </a>
       </div>
+      <div>
+        <form action="/logout" method="POST">
+          <div class="form-group">
+            <button type="submit" class="btn btn-box">
+              <a href="<?php echo base_url('/logout'); ?>">Logout</a>
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   </section>
-
-  <!-- end shop section -->
 
   <!-- info section -->
 
